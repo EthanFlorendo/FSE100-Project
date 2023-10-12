@@ -1,35 +1,35 @@
 while 1
 	brick.MoveMotor('A', 100);
-  brick.MoveMotor('B', 100);
+  	brick.MoveMotor('B', 100);
 
-  touch = brick.TouchPressed(1);
-  distance = brick.UltrasonicDist(2);
+  	touch = brick.TouchPressed(1);
+  	distance = brick.UltrasonicDist(2);
 
-  if brick.TouchPressed(3) == 1
+  	if brick.TouchPressed(3) == 1
 	  break;
-  end
+  	end
 
-  if touch
+  	if touch
 	  pause(1);
 	  brick.StopMotor(‘AD’, ‘Brake’);
 
-    if distance > 5
-		  %turn right
-      brick.MoveMotor('A', -50);
-      brick.MoveMotor('B’, 50);
-      pause(4);
-		  %go forward
-      brick.MoveMotor('A', 100);
-      brick.MoveMotor('B', 100);
-    else
-    	%turn left
-      brick.MoveMotor('B’, -50);
-      brick.MoveMotor('A', 50);
-      pause(4);
-		  %go forward
+		if distance > 5
+			%turn right
+			brick.MoveMotor('A', -50);
+     			brick.MoveMotor('B’, 50);
+      			pause(4);
+			%go forward
+      			brick.MoveMotor('A', 100);
+      			brick.MoveMotor('B', 100);
+    		else
+    			%turn left
+			brick.MoveMotor('B’, -50);
+      			brick.MoveMotor('A', 50);
+      			pause(4);
+		 	%go forward
 			brick.MoveMotor('A', 100);
-      brick.MoveMotor('B', 100);
-    end
+      			brick.MoveMotor('B', 100);
+    		end
 	end
 end
 
