@@ -29,7 +29,11 @@ while 1
 
   	if touch
 	  pause(1);
-	  brick.StopMotor(‘AD’, ‘Brake’);
+	  brick.StopMotor('AD');
+	  brick.MoveMotor('A', 100);
+	  brick.MoveMotor('B', 100);
+	  pause(5);
+	  brick.StopMotor('AD', 'Brake');
 
 		if distance > 5
 			%turn right
@@ -39,6 +43,7 @@ while 1
 			%go forward
       			brick.MoveMotor('A', 100);
       			brick.MoveMotor('B', 100);
+			pause(4);
     		else
     			%turn left
 			brick.MoveMotor('B’, -50);
@@ -47,6 +52,7 @@ while 1
 		 	%go forward
 			brick.MoveMotor('A', 100);
       			brick.MoveMotor('B', 100);
+			pause(4);
     		end
 	end
 end
