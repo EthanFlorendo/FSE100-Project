@@ -25,12 +25,19 @@ while 1
 		run('key_control.m');
 
 		if color == 2
-			brick.beep();  
-			brick.beep();  
+			brick.playTone(100, 300, 500);
+ 			pause(0.75);
+			brick.playTone(100, 300, 500);
+			pause(0.75);
+
 		elseif color == 3
-			brick.beep();  
-			brick.beep(); 
-			brick.beep(); 
+			brick.playTone(100, 300, 500);
+ 			pause(0.75);
+			brick.playTone(100, 300, 500);
+ 			pause(0.75);
+			brick.playTone(100, 300, 500);
+			pause(0.75);
+
 		end 
 
 		brick.MoveMotor('A', 100);
