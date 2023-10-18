@@ -24,10 +24,10 @@ while 1
         	brick.StopMotor('AB', 'Brake');
 		run('key_control.m');
 
-		if color 2
+		if color == 2
 			brick.beep();  
 			brick.beep();  
-		elseif color 3
+		elseif color == 3
 			brick.beep();  
 			brick.beep(); 
 			brick.beep(); 
