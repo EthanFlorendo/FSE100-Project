@@ -71,7 +71,7 @@ while 1
             brick.MoveMotor('D', -10);
             
         case 'rightarrow'
-            brick.MoveMotor('D', 10);
+            brick.StopMotor('ABD', 'Brake');
 
         case 0
             %brick.StopMotor('ABD', 'Coast');
