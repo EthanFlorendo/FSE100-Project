@@ -9,8 +9,9 @@ while 1
 
 	
 
-  	if brick.TouchPressed(C) == 1
+  	if brick.TouchPressed('C') == 1
 		brick.StopMotor('AB', 'Brake');
+		pause(1);
 		break;
   	end
 
