@@ -1,0 +1,56 @@
+brick.SetColorMode(4, 2);
+while 1
+    pause(0.1)
+	brick.MoveMotor('AB', 50);
+
+  	touch = brick.TouchPressed(1);
+  	distance = brick.UltrasonicDist(2);
+	  color = brick.ColorCode(4);
+
+	if color == 5
+		brick.MoveMotor('AB', 0);
+		pause(2);
+		brick.MoveMotor('AB', 50);
+
+  elseif brick.TouchPressed(1) == 1
+		brick.MoveMotor('AB', 0);
+		pause(1);
+    brick.MoveMotor('AB', -50);
+    pause(2);%%%%%%
+    brick.MoveMotor('A', 50);
+    pause(3);%%%%%%
+    brick.MoveMotor('AB', 0);
+    pause(1);
+    brick.MoveMotor('AB', 50);
+  elseif distance > 100
+		%turn right
+		brick.MoveMotor('AB');
+		pause(1);
+		brick.MoveMotor('B', 50);
+  	pause(2);%%%%%%%
+		%go forward
+		brick.MoveMotor('AB',0);
+		pause(1);
+  	brick.MoveMotor('AB', 50);
+
+	elseif color == 2 || color == 3 %%%%
+      if color == 2
+			brick.playTone(100, 300, 500);
+ 			pause(0.75);
+			brick.playTone(100, 300, 500);
+			pause(0.75);
+
+		  elseif color == 3
+			brick.playTone(100, 300, 500);
+ 			pause(0.75);
+			brick.playTone(100, 300, 500);
+ 			pause(0.75);
+			brick.playTone(100, 300, 500);
+			pause(0.75);
+
+		  end 
+      brick.MoveMotor('AB', '0');
+		  run('key_control.m');
+		  brick.MoveMotor('AB', 50);
+  end
+end 
