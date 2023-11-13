@@ -1,9 +1,10 @@
 brick.SetColorMode(4, 2);
+admotor = 53;
 while 1
     	pause(0.1)
 		%%brick.MoveMotor('AB', 50);
     	brick.MoveMotor('A', 50);
-    	brick.MoveMotor('B', 53);
+    	brick.MoveMotor('B', admotor);
 		%%turn off when it does nothing
   	touch = brick.TouchPressed(1);
   	distance = brick.UltrasonicDist(2);
@@ -15,7 +16,7 @@ while 1
 		pause(2);
 			%brick.MoveMotor('AB', 50);
 	        brick.MoveMotor('A', 50);
-	        brick.MoveMotor('B', 53);
+	        brick.MoveMotor('B', admotor);
 	        pause(.3);
 
     	elseif brick.TouchPressed(1) == 1
@@ -38,12 +39,12 @@ while 1
 	        end
 	
 	        brick.MoveMotor('A', 50);
-	        brick.MoveMotor('B', 53);
+	        brick.MoveMotor('B', admotor);
         
     	elseif distance > 65
 
 	        brick.MoveMotor('A', 50);
-	        brick.MoveMotor('B', 54);
+	        brick.MoveMotor('B', admotor);
 	        pause(.7);
 	        	%disp('aaaaa');
 			%turn right
@@ -63,9 +64,8 @@ while 1
 	%pause(2);
   	    		%brick.MoveMotor('AB', 50);
         	brick.MoveMotor('A', 50);
-        	brick.MoveMotor('B', 53);
+        	brick.MoveMotor('B', admotor);
        		pause(1);
-   
 
 	elseif color == 2 || color == 4 %%%%
           	if color == 2
@@ -86,7 +86,7 @@ while 1
 		brick.MoveMotor('AB', 0);
 		run('key_control.m');
 		brick.MoveMotor('A', 50);
-            	brick.MoveMotor('B', 53);
+            	brick.MoveMotor('B', admotor);
             
      end
 end 
