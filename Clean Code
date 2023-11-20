@@ -65,10 +65,10 @@ while 1
             pause(0.01);
         end
 %%%%%%%%%%%
-        brick.MoveMotor('A', admotorl);
-        brick.MoveMotor('B', admotorr);
-        %brick.MoveMotor('AB', 0);
-        pause(1);
+        %brick.MoveMotor('A', admotorl);
+        %brick.MoveMotor('B', admotorr);
+        brick.MoveMotor('AB', 0);
+        pause(2);
 
 %%%%%%%%%%%%
     elseif color == 2 || color == 4 %detects the color blue or yellow
