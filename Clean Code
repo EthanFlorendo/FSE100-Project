@@ -67,6 +67,7 @@ while 1
 %%%%%%%%%%%
         brick.MoveMotor('A', admotorl);
         brick.MoveMotor('B', admotorr);
+        %brick.MoveMotor('AB', 0);
         pause(1);
 
 %%%%%%%%%%%%
