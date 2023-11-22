@@ -47,12 +47,11 @@ while 1
 
         brick.MoveMotor('A', admotorl);
         brick.MoveMotor('B', admotorr);
-
         pause(1);
-        %stops
+        
     end
 
-    if distance > 55 %ultrasonic sensor is detects no wall
+    if distance > 55 %ultrasonic sensor detects no wall
 
         brick.MoveMotor('A', admotorl);
         brick.MoveMotor('B', admotorr);
@@ -78,6 +77,9 @@ while 1
 %%%%%%%%%%%%
     end
     if color == 2 || color == 4 %detects the color blue or yellow
+        brick.MoveMotor('AB', 0);
+        %stops motor
+        
         if color == 2
             brick.playTone(100, 300, 500);
             pause(0.75);
@@ -93,9 +95,6 @@ while 1
             pause(0.75);
             %beeps three times
         end
-
-        brick.MoveMotor('AB', 0);
-        %stops motor
         run('key_control.m');
         %bring up code to move by self
         brick.MoveMotor('A', admotorl);
