@@ -1,0 +1,106 @@
+brick.SetColorMode(4, 2);  %port4, detect colors
+admotorl = 51;
+admotorr = 54;
+%adjust all instances of going that speed
+while 1
+    pause(0.1)
+    brick.MoveMotor('A', admotorl);
+    brick.MoveMotor('B', admotorr);
+    %starts off by going forward
+
+    touch = brick.TouchPressed(1);
+    distance = brick.UltrasonicDist(2);
+    color = brick.ColorCode(4);
+    %collects sensor inputs
+
+    if color == 5 %sees red
+        brick.MoveMotor('AB', 0);
+        pause(2);
+        %stops for 2 seconds
+        brick.MoveMotor('A', admotorl);
+        brick.MoveMotor('B', admotorr);
+        pause(.3);
+        %goes forward and outside of red strip
+    end
+
+    if brick.TouchPressed(1) == 1 %touch sensor is touched
+        
+        brick.MoveMotor('AB', 0);
+        pause(1);
+        %stops
+        brick.MoveMotor('A', -50);
+        brick.MoveMotor('B', -51.5);
+        pause(.5);
+        %moves backward for.5 seconds
+        brick.MoveMotor('AB', 0);
+        pause(0.5);
+        %stops
+        brick.GyroCalibrate(3);
+        %reset gyro sensor
+        brick.MoveMotor('A', 20);
+        brick.MoveMotor('B', -20);
+        %moves left til angle is near 90
+        while(abs(brick.GyroAngle(3)) <= 81)
+            pause(0.01);
+        end
+        %brick.MoveMotor('AB', 0);
+
+        brick.MoveMotor('A', admotorl);
+        brick.MoveMotor('B', admotorr);
+
+        pause(1);
+        %stops
+    end
+
+    if distance > 55 %ultrasonic sensor is detects no wall
+
+        brick.MoveMotor('A', admotorl);
+        brick.MoveMotor('B', admotorr);
+        pause(.5);
+        %goes past wall
+        brick.MoveMotor('AB', 0);
+        pause(.5);
+        %stops
+        brick.GyroCalibrate(3);
+        %reset gyro sensor
+        brick.MoveMotor('B', 20);
+        brick.MoveMotor('A', -20);
+        %moves right til angle is near 90
+        while(abs(brick.GyroAngle(3)) <= 81)
+            pause(0.01);
+        end
+%%%%%%%%%%%
+        brick.MoveMotor('A', admotorl);
+        brick.MoveMotor('B', admotorr);
+        %brick.MoveMotor('AB', 0);
+        pause(1.5);
+
+%%%%%%%%%%%%
+    end
+    if color == 2 || color == 4 %detects the color blue or yellow
+        if color == 2
+            brick.playTone(100, 300, 500);
+            pause(0.75);
+            brick.playTone(100, 300, 500);
+            pause(0.75);
+            %beeps twice
+        elseif color == 4
+            brick.playTone(100, 300, 500);
+            pause(0.75);
+            brick.playTone(100, 300, 500);
+            pause(0.75);
+            brick.playTone(100, 300, 500);
+            pause(0.75);
+            %beeps three times
+        end
+
+        brick.MoveMotor('AB', 0);
+        %stops motor
+        run('key_control.m');
+        %bring up code to move by self
+        brick.MoveMotor('A', admotorl);
+        brick.MoveMotor('B', admotorr);
+        %runs after
+
+    end
+end
