@@ -1,6 +1,6 @@
 brick.SetColorMode(4, 2);  %port4, detect colors
 admotorl = 51;
-admotorr = 54;
+admotorr = 53.5;
 %adjust all instances of going that speed
 while 1
     pause(0.1)
@@ -47,11 +47,12 @@ while 1
 
         brick.MoveMotor('A', admotorl);
         brick.MoveMotor('B', admotorr);
+
         pause(1);
-        
+        %stops
     end
 
-    if distance > 55 %ultrasonic sensor detects no wall
+    if distance > 55 %ultrasonic sensor is detects no wall
 
         brick.MoveMotor('A', admotorl);
         brick.MoveMotor('B', admotorr);
@@ -63,7 +64,7 @@ while 1
         brick.GyroCalibrate(3);
         %reset gyro sensor
         brick.MoveMotor('B', 20);
-        brick.MoveMotor('A', -20);
+        brick.MoveMotowr('A', -20);
         %moves right til angle is near 90
         while(abs(brick.GyroAngle(3)) <= 81)
             pause(0.01);
@@ -72,14 +73,25 @@ while 1
         brick.MoveMotor('A', admotorl);
         brick.MoveMotor('B', admotorr);
         %brick.MoveMotor('AB', 0);
-        pause(1.5);
+        s = 0;
+        while s < 12
+            pause(0.1);
+            s = s + 1;
+            if brick.ColorCode(4) == 5
+                brick.MoveMotor('AB', 0);
+                pause(1);
+                brick.MoveMotor('A', admotorl);
+                brick.MoveMotor('B', admotorr);
+                pause(0.5);
+            end
+        end
 
 %%%%%%%%%%%%
     end
     if color == 2 || color == 4 %detects the color blue or yellow
         brick.MoveMotor('AB', 0);
         %stops motor
-        
+
         if color == 2
             brick.playTone(100, 300, 500);
             pause(0.75);
@@ -95,10 +107,15 @@ while 1
             pause(0.75);
             %beeps three times
         end
+
+        
         run('key_control.m');
         %bring up code to move by self
         brick.MoveMotor('A', admotorl);
         brick.MoveMotor('B', admotorr);
+        while (brick.ColorCode(4) == 2 || brick.ColorCode(4) == 4)
+            pause(0.1);
+        end
         %runs after
 
     end
