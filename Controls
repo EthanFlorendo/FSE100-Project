@@ -5,26 +5,26 @@ while 1
     pause(0.1);
     switch key
         case 'w'
-            brick.MoveMotor('A', 50);
-            brick.MoveMotor('B', 50);
+            brick.MoveMotor('A', 35);
+            brick.MoveMotor('B', 35);
             
         case 's'
-            brick.MoveMotor('A', -50);
-            brick.MoveMotor('B', -50);
-            
-        case 'a'
-            brick.MoveMotor('A', 35);
+            brick.MoveMotor('A', -35);
             brick.MoveMotor('B', -35);
             
+        case 'a'
+            brick.MoveMotor('A', 25);
+            brick.MoveMotor('B', -25);
+            
         case 'd'
-            brick.MoveMotor('B', 35);
-            brick.MoveMotor('A', -35);
+            brick.MoveMotor('B', 25);
+            brick.MoveMotor('A', -25);
             
-        case 'leftarrow'
-            brick.MoveMotor('D', -10);
+        case 'm'
+            brick.MoveMotor('D', -15);
             
-        case 'rightarrow'
-            brick.MoveMotor('D', 10);
+        case 'n'
+            brick.MoveMotor('D', 15);
 
         case 0
             brick.StopMotor('ABD', 'Coast');
@@ -32,6 +32,10 @@ while 1
         case 'q'
             brick.StopMotor('ABD', 'Brake');
             break;
+
+        case 't'
+            brick.MoveMotor('A', 100);
+            brick.MoveMotor('B', 100);
     end
 end
 
